@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,700&family=Poppins:ital,wght@0,200;1,300&family=Sora:wght@100;300;500&display=swap');
+
+/* indicamos que para toda la pagina se use estas caracteristicas */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sora', sans-serif;
+    font-size: 17px; 
+}
+
+/*Cuerpo*/
+body{
+    /* background-image: url(/public/img/background-opcion.jpg); */
+    /* background-image: url(/public/img/b2original.jpg); */
+    /* background-image: url(/public/img/plantilla-fondo-celebracion-confeti-cintas-colores_29865-3962.avif); */
+    background-image: url(../img/b4.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 20em;
+}
+
+/*moficaciones generales**/
+h1,h2, h3, h4, h5
+{
+    font-family: 'Playfair Display', serif;
+}
+
+h2{
+    color: blue;
+}
+
+/* palabras naranjas en los textos */
+strong{
+    color: rgb(251,148,68);
+}
+
+
+/*Contenido*/
+.header{
+    /* height: 6.3vh; */
+    height: 80px;
+}
+.navbarr{
+    height: 80px;   
+    background: rgb(251,148,68);
+    z-index: 10;
+    margin-bottom: 50px;
+}
+
+.log{
+    width: 160px;   
+    height: 60px;
+    padding: 20px, 100px;   
+}
+.navbarr ul{
+    float: right;
+    margin-left: 20px;
+}
+.navbarr ul li{
+    list-style: none;
+    margin: 0 8px;
+    display: inline-block;
+    line-height: 80px;
+}
+.navbarr ul li a{
+    text-decoration: none;
+    color: rgb(240, 248, 255);
+    padding: 6px 10px;
+    font-size: 15px;
+}
+/*Mantiene el color del boton "mi perfil" activado por defecto */
+.navbarr ul li a.activado,
+.navbarr ul li a:hover{
+    background: black;
+    border-radius: 20px;
+}
+/*imagen o contenido default*/
+.contenidoDefault{
+    text-align: center;
+    padding: 500px 500px;
+}
+
+.contenido{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.contenido h2 {
+    text-align: center;
+}
+
+/* boton whatsApp */
+    .btn-wsp{
+        position:fixed;
+        width:60px;
+        height:60px;
+        line-height: 60px;
+        bottom:25px;
+        right:25px;
+        background:#25d366;
+        color:#FFF;
+        border-radius:80px;
+        text-align:center;
+        font-size: 35px;
+        box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
+        z-index:100;
+        transition: all 300ms ease;
+    }
+    .btn-wsp:hover{
+        background: #20ba5a;
+    }
+    @media only screen and (min-width:320px) and (max-width:768px){
+        .btn-wsp{
+            width:63px;
+            height:63px;
+            line-height: 66px;
+        }
+    }
+
+footer {
+	background-color: rgb(251, 148, 68);
+    list-style: none;
+}
+
+footer a{
+    text-decoration: none;
+}
+@media (max-width: 667px) {
+    #imgBirrete{
+        height: 500px;
+        width: 344px;
+    }
+}
+
+@media (max-width: 760px) {
+    
+    .navbarr ul {
+        margin-left: -10%;
+    }
+
+    .navbarr ul li {
+        margin: 0;
+    }
+
+    .navbarr ul li a {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 373px) {
+
+    .navbarr ul li a {
+        font-size: 0.6em;
+    }
+} 
