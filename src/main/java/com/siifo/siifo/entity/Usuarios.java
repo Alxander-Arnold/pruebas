@@ -17,7 +17,7 @@ public class Usuarios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String tipoIdentificacion;
     private int numeroIdentificacion;
     private String nombres;

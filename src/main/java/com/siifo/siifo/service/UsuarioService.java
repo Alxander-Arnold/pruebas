@@ -17,20 +17,20 @@ public class UsuarioService {
     UsuarioRepository usuarioRepository;
     //metodos comunes
 
-    public List<Usuarios> getUsersList(){
-        return usuarioRepository.findAll();
-    }
+    // public List<Usuarios> getUsersList(){
+    //     return usuarioRepository.findAll();
+    // }
 
-    public Optional<Usuarios> getUser(Long id){
-        return usuarioRepository.findById(id);
-    }
+    // public Optional<Usuarios> getUser(Long id){
+    //     return usuarioRepository.findById(id);
+    // }
 
-    public void saveOrUpdate(Usuarios usuario){
-        usuarioRepository.save(usuario);
-    }
+    // public void saveOrUpdate(Usuarios usuario){
+    //     usuarioRepository.save(usuario);
+    // }
 
-    public void delete(Long id){
-        usuarioRepository.deleteById(id);
-    }
+    // public void delete(Long id){
+    //     usuarioRepository.deleteById(id);
+    // }
 
 }
