@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Dashboard</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="../public/css/dashboard.css" />
+    <!-- Boxiocns CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- bootstrap CDN incons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+    
+  </head>
+
+  <body style="background-color: #E4E9F7;">
+    <!-- navbar -->
+    <nav id="navbar">
+      <a href="#"><img class="log" src="../public/img/FosterLogo-removebg-preview.png"/></a>
+    </nav>
+
+    <!-- Head sidebar -->
+    <div class="sidebar close opnePhone">
+      <div class="logo-details mt-1">
+        <span class="logo_name">Administrador</span>
+      </div>
+      <!-- sidebar menu -->
+      <ul class="nav-links">
+        <li id="mostrarDashboard">
+          <a href="#" id="dashboar">
+            <i class="bi bi-speedometer bxForm"></i>
+            <span class="link_name">Dashboard</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#" >Dashboard</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class="bi bi-card-list bxForm"></i>
+              <span class="link_name">Lógistica</span>
+            </a>
+            <i class="bx bxs-chevron-down arrow"></i>
+          </div>
+          <!-- logistica -->
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Lógistica </a></li>
+            <li><a href="#" id="registrarEvento">Agregar Evento</a></li>
+            <li><a href="#" id="consultarEvento">Consultar Evento</a></li>
+            <li><a href="#" id="listaEvento">Agregar Lista Evento</a></li>
+            <li><a class="link_name" href="#">Empleados</a></li>
+            <li><a href="#" id="registarEmpleado">Registrar Empleado</a></li>
+            <li><a href="#" id="consultarEmpleado">Constultar Empleados</a></li>
+            <li><a href="#" id="generarReporteLogistica">Generar Reporte</a></li>
+          </ul>
+        </li>
+        <!-- inventario -->
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class="bi bi-card-list bxForm"></i>
+              <span class="link_name">Inventario</span>
+            </a>
+            <i class="bx bxs-chevron-down arrow" ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Inventario</a></li>
+            <li><a href="#" id="registrarProducto">Agregar Producto</a></li>
+            <li><a href="#" id="consultarProducto">Consultar Producto</a></li>
+            <li><a href="#" id="registrarProveedor">Agregar Proveedor</a></li>
+            <li><a href="#" id="consultarProveedor">Consultar Proveedor</a></li>
+            <li><a href="#" id="generarReporteInventario">Generar Reporte</a></li>
+          </ul>
+        </li>
+        <!-- ventas -->
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class="bi bi-card-list bxForm"></i>
+              <span class="link_name">Ventas</span>
+            </a>
+            <i class="bx bxs-chevron-down arrow esconder" id="display"></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Ventas</a></li>
+            <li><a href="#" id="registrarOrdenCompra">Registrar Orden de Compra</a></li>
+            <li><a href="#" id="consultarOC">Consultar Orden de Compra</a></li>
+            <li><a href="#" id="consultarOV">Consultar Orden de Venta</a></li>
+          </ul>
+        </li>
+        
+        <!-- clientes -->
+
+        <li>
+          <a href="#">
+            <i class="bx bx-pie-chart-alt-2 bxForm"></i>
+            <span class="link_name">Analytics</span>
+          </a>
+
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Analytics</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <div class="profile-details">
+            <div class="profile-content">
+              <img src="../public/img/profiles/alexander.webp" alt="profileImg" />
+            </div>
+            <div class="name-job">
+              <div class="profile_name" th:text="${session.nombreUsuario}" ></div>
+              <div class="job" th:text="${session.rolUsuario}"></div>
+            </div>
+            <a th:href="@{/salir}">
+              <i class="bx bx-log-out"></i>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="drop">
+      <div class="dropdown p-3 usuario">
+        <button
+          class="btn border-none outline-none text-white dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fa fa-user"></i
+          ><span class="ms-1 d-none d-sm-inline">Usuario</span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="triggerId">
+          <li><a class="dropdown-item" >Cerrar sesion</a></li>
+          <li><a class="dropdown-item" href="#">Perfil</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- contenido -->
+    <section class="home-section">
+      <div class="home-content">
+        <i class="bx bx-menu"></i>
+      </div>
+
+      <div class="container-fluid" id="dashboard">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-center mb-5">
+          <!-- aviso registroso exito o invalido (formularios) -->
+          <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${successMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+            <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span th:text="${errorMessage}"></span>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+            <h1 class="mb-0">Dashboard</h1>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                          class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+        </div>
+  
+          <!-- Content Row -->
+          <div class="row">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div
+                        class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                      >
+                        Ganancias (Mensual)
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        $40,000
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x colorsecond"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div
+                        class="text-xs font-weight-bold text-success text-uppercase mb-1"
+                      >
+                        Ganancias (Anual)
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        $215,000
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x colorsecond"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div
+                        class="text-xs font-weight-bold text-info text-uppercase mb-1"
+                      >
+                        Tareas
+                      </div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div
+                            class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
+                          >
+                            50%
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div
+                              class="progress-bar bg-info"
+                              role="progressbar"
+                              style="width: 50%"
+                              aria-valuenow="50"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x colorsecond"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div
+                        class="text-xs font-weight-bold text-warning text-uppercase mb-1"
+                      >
+                        Solicitudes pendientes
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-comments fa-2x colorsecond"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <!-- Area Chart -->
+            <div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+                >
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    Ganancias General
+                  </h6>
+  
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-sm dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw colorsecond"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Filtrar</a>
+                      <a class="dropdown-item" href="#">Ver estadisticas</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">otro</a>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="AreaChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Pie Chart -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+                >
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    Fuentes de ingreso
+                  </h6>
+  
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-sm dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw colorsecond"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Filtrar</a>
+                      <a class="dropdown-item" href="#">Ver estadisticas</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Otro</a>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2">
+                    <canvas id="myPieChart"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-primary"></i> Directa
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> Social
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-info"></i> Remisión
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Content Row -->
+          <div class="row">
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+              <!-- Projects -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Proyectos</h6>
+                </div>
+                <div class="card-body">
+                  <h4 class="small font-weight-bold">
+                    Migración del servidor <span class="float-end">20%</span>
+                  </h4>
+                  <div class="progress mb-4">
+                    <div
+                      class="progress-bar bg-danger"
+                      role="progressbar"
+                      style="width: 20%"
+                      aria-valuenow="20"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                  <h4 class="small font-weight-bold">
+                    Seguimiento de ventas <span class="float-end">40%</span>
+                  </h4>
+                  <div class="progress mb-4">
+                    <div
+                      class="progress-bar bg-warning"
+                      role="progressbar"
+                      style="width: 40%"
+                      aria-valuenow="40"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                  <h4 class="small font-weight-bold">
+                    Base de datos de cliente <span class="float-end">60%</span>
+                  </h4>
+                  <div class="progress mb-4">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      style="width: 60%"
+                      aria-valuenow="60"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                  <h4 class="small font-weight-bold">
+                    Detalles de pago <span class="float-end">80%</span>
+                  </h4>
+                  <div class="progress mb-4">
+                    <div
+                      class="progress-bar bg-info"
+                      role="progressbar"
+                      style="width: 80%"
+                      aria-valuenow="80"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                  <h4 class="small font-weight-bold">
+                    Configuracion de cuenta
+                    <span class="float-end">Complete!</span>
+                  </h4>
+                  <div class="progress">
+                    <div
+                      class="progress-bar bg-success"
+                      role="progressbar"
+                      style="width: 100%"
+                      aria-valuenow="100"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Color System -->
+              <div class="row">
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-primary text-white shadow">
+                    <div class="card-body">
+                      Primary
+                      <div class="text-white-50 small">#4e73df</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-success text-white shadow">
+                    <div class="card-body">
+                      Success
+                      <div class="text-white-50 small">#1cc88a</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-info text-white shadow">
+                    <div class="card-body">
+                      Info
+                      <div class="text-white-50 small">#36b9cc</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-warning text-white shadow">
+                    <div class="card-body">
+                      Warning
+                      <div class="text-white-50 small">#f6c23e</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-danger text-white shadow">
+                    <div class="card-body">
+                      Danger
+                      <div class="text-white-50 small">#e74a3b</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-secondary text-white shadow">
+                    <div class="card-body">
+                      Secondary
+                      <div class="text-white-50 small">#858796</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-light text-black shadow">
+                    <div class="card-body">
+                      Light
+                      <div class="text-black-50 small">#f8f9fc</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-dark text-white shadow">
+                    <div class="card-body">
+                      Dark
+                      <div class="text-white-50 small">#5a5c69</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-6 mb-4">
+              <!-- Illustrations -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Ilustraciones</h6>
+                </div>
+                <div class="card-body">
+                  <div class="text-center">
+                    <img
+                      class="img-fluid px-3 px-sm-4 mt-3 mb-4"
+                      style="width: 25rem"
+                      src="../public/img/profiles/undraw_posting_photo.svg"
+                      alt="..."
+                    />
+                  </div>
+                  <p>
+                    Add some quality, svg illustrations to your project courtesy
+                    of
+                    <a target="_blank" rel="nofollow" href="https://undraw.co/"
+                      >unDraw</a
+                    >, a constantly updated collection of beautiful svg images
+                    that you can use completely free and without attribution!
+                  </p>
+                  <a target="_blank" rel="nofollow" href="https://undraw.co/"
+                    >Browse Illustrations on unDraw &rarr;</a
+                  >
+                </div>
+              </div>
+  
+              <!-- Approach -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    Development Approach
+                  </h6>
+                </div>
+                <div class="card-body">
+                  <p>
+                    SB Admin 2 makes extensive use of Bootstrap 4 utility classes
+                    in order to reduce CSS bloat and poor page performance. Custom
+                    CSS classes are used to create custom components and custom
+                    utility classes.
+                  </p>
+                  <p class="mb-0">
+                    Before working with this theme, you should become familiar
+                    with the Bootstrap framework, especially the utility classes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Formularios -->
+      <!----------------------------------------------------------------------------------- Logistica --------------------------------------------------------->
+
+      <!-- Registrar Evento -->
+      <div class="container mt-5 pt-5" style="display: none;" id="agregarEvento">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="registroEvento" method="post">
+                  <h2 class="text-center mb-5">Registrar Evento</h2>
+                  <!--Registrar activo-->
+                  <label for="nombreCliente">Nombre y apellidos del cliente</label>
+                  <input type="text" name="nombreCliente" id="nombreCliente" class="form-control my-4 py-2" placeholder="Alejo" required />
+                  
+                  <label for="cedulaCliente">Cedula</label>
+                  <input type="number" name="cedulaCliente" id="cedulaCliente" class="form-control my-4 py-2" placeholder="3424234" required />
+
+                  <label for="direccionEvento">Dirección del evento</label>
+                  <input type="text" name="direccionEvento" id="direccionEvento" class="form-control my-4 py-2" placeholder="crr 99-666" required/>
+
+                  <label for="aforoEvento">Aforo del evento</label>
+                  <input type="number" name="aforoEvento" id="aforoEvento" class="form-control my-4 py-2" required/>
+
+                  <label for="fecha">Fecha del evento</label>
+                  <input type="date" name="fechaEvento" id="fechaEvento" class="form-control my-4 py-2" required/>
+
+                  <label for="observacion">Observaciones</label>
+                  <input type="text" name="observacion" id="observacion" class="form-control my-4 py-2" placeholder="ingrese la hora del evento" required/>
+
+                  <label for="valorEvento">Valor del evento</label>
+                  <input type="number" name="valorEvento" id="valorEvento" class="form-control my-4 py-2" placeholder="1000" required/>
+
+                  <label for="">Empleados: </label>
+                  <select th:field="*{detalleEvento.usuario}" name="usuario" class="form-control my-4 py-2" required>
+                    <option th:each="empleado : ${empleados}" th:value="${empleado.idUsuario}" th:text="${empleado.nombreUsuario}"></option>
+                  </select> 
+                  
+                  <label for="evento">Evento:</label>
+                  <select th:field="*{detalleEvento.evento}" name="evento" class="form-control my-4 py-2" required>
+                    <option th:each="eventos : ${evento}" th:value="${eventos.idEvento}" th:text="${eventos.nombreEvento}"></option>
+                  </select>
+
+                  <label for="tipoPaquete">Paquete:</label>
+                  <select id="paqueteEvento" name="paqueteEvento" class="form-control my-4 py-2" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Platinum">Platinum</option>
+                  </select>
+                  <!-- <label>Empleados:</label>
+                  <div id="contenedorCampos">
+                    <input list="empleado" class="form-control my-4 py-2" id="agregarEmpleados" placeholder="agrega al empleado 1" required>
+                    <datalist id="empleado" name="empleado" required>
+                      <option value="">Seleccione...</option>
+                      <option>Kenny Felipe Mape</option>
+                      <option>Pedro Alexander Castañeda</option>
+                      <option>Miguel Angel amorso</option>
+                      <option>Pablo Andrés Ardila Machetá</option>
+                  </datalist>  
+                  </div>-->
+                  <!-- <button type="button" id="agregarEmpleado" class="btn btn-info">+</button>
+                  <button type="button" id="descartarEmpleado" class="btn btn-danger">-</button>
+                  <br> -->
+                  <!-- <label for="hora">Hora del Evento:</label>
+                  <input type="time" id="hora" name="hora" class="form-control my-4 py-2" required> -->
+                  <div class="text-center mt-3">
+                  <input class="btn btn-primary" type="submit" value="Registrar">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- consulta evento -->
+      <div class="container mt-5 pt-5" style="display: none;" id="formularioConsultarVenta">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="">
+                  <h2 class="text-center mb-5">Consultar Evento</h2>
+                  <!--Registrar activo-->
+                  <label for="idEvento">ID Evento</label>
+                  <input type="text" name="idEvento" id="idEvento" class="form-control my-4 py-2" placeholder="20" required/>
+                  <div class="text-center mt-3">
+                    <a class="btn btn-primary justify-content-center align-content-center" onclick="guardarValor()" id="buscarEvento">Buscar</a>
+                  </div>
+                  <br>
+                  <br>
+                  <div class="d-flex justify-content-around">
+                    <!-- <button class="btn btn-primary" id="modificarEvento"><a href="#"  class="text-white">Modificar Evento</a></button>
+                    <button class="btn btn-primary" id="eliminarEvento"><a href="#"  class="text-white">Eliminar Evento</a></button> -->
+                    <!-- <button class="btn btn-primary"  class="text-white">Encuesta</button> -->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- post consulta evento -->
+      <div class="container mt-5 pt-5" style="display: none;" id="formConsultaEvento">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="editDetalleEvento" th:object="${detalleEvento}" method="post" id="formEditDetalleEvento">
+
+                  <label for="idEvento">Evento numero</label>
+                  <input type="hidden" name="idDetalleEvento" id="idDetalleEvento" class="form-control my-4 py-2" th:field="${detalleEvento.idDetalleEvento}" readonly/>
+
+                  <label for="nombreCliente">Nombre del cliente</label>
+                  <input type="text" name="nombreCliente" id="nombreCliente" class="form-control my-4 py-2" th:field="${detalleEvento.nombreCliente}"/>
+
+                  <label for="cedulaCliente">Cedula del cliente</label>
+                  <input type="number" name="cedulaCliente" id="cedulaCliente" class="form-control my-4 py-2" th:field="${detalleEvento.cedulaCliente}"/>
+
+                  <label for="paqueteEvento">Paquete del evento</label>
+                  <input type="text" name="paqueteEvento" id="paqueteEvento" class="form-control my-4 py-2" th:field="${detalleEvento.paqueteEvento}"/>
+
+                  <label for="direccionEvento">Direccion destino</label>
+                  <input type="text" name="direccionEvento" id="direccionEvento" class="form-control my-4 py-2" th:field="${detalleEvento.direccionEvento}" th:text="${detalleEvento.direccionEvento}" readonly/>
+
+                  <label for="fechaEvento">Fecha del Evento</label>
+                  <input type="date" name="fechaEvento" id="fechaEvento" class="form-control my-4 py-2" th:field="${detalleEvento.fechaEvento}"/>
+                  
+                  <label for="aforoEvento">Aforo de personas</label>
+                  <input type="number" name="aforoEvento" id="aforoEvento" class="form-control my-4 py-2" th:field="${detalleEvento.aforoEvento}"/>
+                  
+                  <label for="valorEvento">Valor que pagas</label>
+                  <input type="number" name="valorEvento" id="valorEvento" class="form-control my-4 py-2" th:field="${detalleEvento.valorEvento}"/>
+                  
+                  <label for="observacion">Observaciones</label>
+                  <input type="text" name="observacion" id="observacion" class="form-control my-4 py-2" th:field="${detalleEvento.observacion}"/>
+                  
+                  <label for="usuario">Empleados: </label>
+                  <select th:field="${detalleEvento.usuario}" name="usuario" class="form-control my-4 py-2"> 
+                    <option th:each="empleado : ${empleados}" th:value="${empleado.idUsuario}" th:text="${empleado.nombreUsuario}" selected></option>
+                  </select> 
+                  
+                  <label for="evento">Evento:</label>
+                  <select th:field="${detalleEvento.evento}" name="evento" class="form-control my-4 py-2">
+                    <option th:each="eventos : ${evento}" th:value="${eventos.idEvento}" th:text="${eventos.nombreEvento}" selected></option>
+                  </select>
+
+                  <button type="submit" class="btn btn-primary">Subir Cambios</button>
+                  <a class="btn btn-danger justify-content-center align-content-center" onclick="eliminarEvento()">Eliminar</a>
+                  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agregar lista de evento -->
+      <div class="container mt-5 pt-5" style="display: none;" id="agregarListaEvento">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="agregarListaEvento" method="post">
+                  <h2 class="text-center mb-5">Elementos por evento</h2>
+                  <!-- llave fornaea detalleEvento -->
+                  <label for="">Evento seleccionado:</label>
+                  <select th:field="*{listaElementosEvento.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" required> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.nombreCliente}"></option>
+                  </select> 
+                  <small class="form-text text-muted my-4 py-2">Selecciona el cliente al cual se le registro el evento</small>
+                  <br>
+                  <br>
+                  <!-- Lista de productos -->
+                  <label for="">Productos a llevar:</label>
+                  <input type="text" name="productosLista" id="productosLista" class="form-control my-4 py-2">
+
+                  <!-- Empleado a cargo -->
+                  <label for="">Empleado a cargo:</label>
+                  <select th:field="*{listaElementosEvento.usuario}" name="usuario" class="form-control my-4 py-2" required>
+                    <option th:each="empleado : ${empleados}" th:value="${empleado.idUsuario}" th:text="${empleado.nombreUsuario}"></option>
+                  </select> 
+
+                  <button type="submit" class="btn btn-primary text-center mt-3">Agregar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registrar empleado -->
+      <div class="container mt-5 pt-5" style="display: none;" id="agregarFormEmpleado">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="registroEmpleado" method="post">
+                  <h2 class="text-center mb-5">Registrar Empleado</h2>
+                  <!-- Registrar activo -->
+                  <label for="tipoIdentificacion">Tipo de identificación:</label>
+                    <select name="tipoIdentificacion" id="tipoIdentificacion" class="form-control my-4 py-2" required>
+                    <option value="C.C">C.C</option>
+                    <option value="T.I">T.I</option>
+                  </select>
+                  <label for="numeroIdentificacion">Numero de identificación</label>
+                  <input type="number" name="numeroIdentificacion" id="numeroIdentificacion" class="form-control my-4 py-2" placeholder="1001456789" maxlength="10" min="10" required/>
+      
+                  <label for="nombreUsuario">Nombres: </label>
+                  <input type="text" max="45" id="nombreUsuario" name="nombreUsuario" class="form-control my-4 py-2"  placeholder="Gustavo Adrian" required>
+
+                  <label for="apellidoUsuario">Apellidos: </label>
+                  <input type="text" max="45" id="apellidoUsuario" name="apellidoUsuario" class="form-control my-4 py-2" placeholder="Cerati Clark" required>
+
+                  <label for="numeroUsuario">Numero de contacto: </label>
+                  <input type="number" id="numeroUsuario" name="numeroUsuario" class="form-control my-4 py-2" placeholder="3147886969" required>
+
+                  <label for="correoUsuario">Correo: </label>
+                  <input type="text" id="correoUsuario" name="correoUsuario" class="form-control my-4 py-2" placeholder="nosoycerati@gmail.com" required>
+      
+                  <label for="contraseñaUsuario">Contraseña: </label>
+                  <input type="text" id="contraseñaUsuario" name="contraseñaUsuario" class="form-control my-4 py-2" placeholder="constraseña1234*" required>
+
+                  <label for="rol">Tipo de cargo:</label>
+                  <select th:field="*{usuarios.rol}" name="rol" class="form-control my-4 py-2" required>
+                    <option th:each="rol : ${Rol}" th:value="${rol.idRol}" th:text="${rol.nombreRol}"></option>
+                  </select>
+      
+                  <div class="text-center mt-3">
+                    <input class="btn btn-primary" type="submit" value="Registrar" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consultar empleado -->
+      <div class="container mt-5 pt-5" style="display: none;" id="formularioConsultarEmpleado">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="">
+                  <h2 class="text-center mb-5">Consultar Empleado</h2>
+                  <!--Registrar activo-->
+                  <label for="identificacion">Num identificación Empleado</label>
+                  <input type="number" name="identificacion" id="identificacion" class="form-control my-4 py-2" placeholder="1004567890" required/>
+                  <div class="text-center mt-3">
+                    <a class="btn btn-primary justify-content-center align-content-center" onclick="guardarVal()" id="buscarEmpleado">Buscar</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post consulta empleado from -->
+      <div class="container mt-5 pt-5" style="display: none;" id="consultarFormEmpleado">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="editEmpleado" th:object="${usuarios}" method="post" id="formEditEmpleado">
+                  <h2 class="text-center mb-5">Registrar Empleado</h2>
+                  
+                  <input type="hidden" name="idUsuario" id="idUsuario" th:field="${usuarios.idUsuario}" class="form-control my-4 py-2" required/>
+                  
+                  <label for="tipoIdentificacion">Tipo de identificación:</label>
+                  <input class="form-control my-4 py-2" id="tipoIdentificacion" name="tipoIdentificacion" type="text" th:field="${usuarios.tipoIdentificacion}">
+    
+
+                  <label for="numeroIdentificacion">Numero de identificación</label>
+                  <input type="number" name="numeroIdentificacion" th:field="${usuarios.numeroIdentificacion}" id="numeroIdentificacion" class="form-control my-4 py-2" required/>
+      
+                  <label for="nombreUsuario">Nombres: </label>
+                  <input type="text" id="nombreUsuario" name="nombreUsuario" class="form-control my-4 py-2" th:field="${usuarios.nombreUsuario}" required>
+
+                  <label for="apellidoUsuario">Apellidos: </label>
+                  <input type="text" id="apellidoUsuario" name="apellidoUsuario" class="form-control my-4 py-2" th:field="${usuarios.apellidoUsuario}" required> 
+
+                  <label for="numeroUsuario">Numero de contacto: </label>
+                  <input type="number" id="numeroUsuario" name="numeroUsuario" class="form-control my-4 py-2" th:field="${usuarios.numeroUsuario}" required>
+
+                  <label for="correoUsuario">Correo: </label>
+                  <input type="text" id="correoUsuario" name="correoUsuario" class="form-control my-4 py-2" th:field="${usuarios.correoUsuario}" required>
+      
+                  <label for="contraseñaUsuario">Contraseña: </label>
+                  <input type="password" id="contraseñaUsuario" name="contraseñaUsuario" class="form-control my-4 py-2" th:field="${usuarios.contraseñaUsuario}" required>
+
+                  <label for="tipoRol">Tipo de cargo:</label>
+                  <select th:field="${usuarios.rol}" name="rol" class="form-control my-4 py-2" required> 
+                    <option th:each="rol : ${Rol}" th:value="${rol.idRol}" th:text="${rol.nombreRol}" selected></option>
+                  </select>
+                  
+                  <div class="text-center mt-3">
+                    <input class="btn btn-primary" type="submit" value="Subir cambios"/>
+                    <a class="btn btn-danger justify-content-center align-content-center" onclick="eliminarEmpleado()">Eliminar</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!----------------------------------------------------------------------------------- inventario --------------------------------------------------------->
+
+      <!-- Registro productos -->
+      <div class="container mt-5 pt-5" style="display: none;" id="agregarProducto">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form th:action="@{/register}" th:object="${producto}"  th:method="POST">
+                  <h2 class="text-center mb-5">Registrar Producto</h2>
+                  <label for="nombreProducto">Nombre de tu producto</label>
+                  <input type="text" th:field="*{nombreProductos}" name="nombreProducto" id="nombreProducto" class="form-control my-4 py-2" placeholder="Reflectores" required/>
+                  <label for="cantidadProducto">Cantidad</label>
+                  <input type="number" th:field="*{cantidad}" name="cantidadProducto" id="cantidadProducto" class="form-control my-4 py-2" placeholder="20" required />
+                  <label for="precioProducto">Precio Compra</label>
+                  <input type="number"  th:field="*{precioCompra}" name="precioProducto" id="precioProducto" class="form-control my-4 py-2" placeholder="000075" required/>
+
+                  <label for="categoria">Selecciona la categoria</label>
+                  <select id="categoria" name="categoria" class="form-control my-4 py-2" required>
+                    <option value="" disabled >seleccione</option>
+                    <option value="Luces">Luces</option>
+                    <option value="Sonido">Sonido</option>
+                    <option value="decoracion">Decoraci&oacute;n</option>
+                    <option value="otro">otro</option>
+                  </select>
+                  <label for="fecha">fecha</label>
+                  <input type="date" th:field="*{fechaEntrega}" name="fecha" id="fecha" class="form-control my-4 py-2" placeholder="" />
+                  
+                  <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Consultar Producto -->
+      <div class="container mt-5 pt-5" style="display: none;" id="formularioConsultarProducto">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="" method="GET">
+                  <h2 class="text-center mb-5">Consultar Producto</h2>
+                  <!--Registrar activo-->
+                  <label for="nombreProducto">ID Producto</label>
+                  <input type="number" name="idProductos" id="idProductos" class="form-control my-4 py-2" placeholder="59" required/>
+                  <div class="text-center mt-3">
+                    <a href="#" class="btn btn-primary justify-content-center align-content-center" onclick="guardarInput()" id="buscarProducto">Buscar</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Formulario de carga post consulta  -->
+      <div class="container mt-7 pt-7" style="display: none;" id="productoConsultaAsync">
+        
+        <div class="container mt-5 pt-5">
+          <div class="row">
+            <div class="col-12 col-sm-7 col-md-6 m-auto">
+              <div class="card border-0 shadow">
+                <div class="card-body">
+                  <form action="editProducto" th:object="${producto}" method="POST">
+                    <label for="idProductos">Producto numero:</label>
+                    <input type="hidden" name="idProducto" id="idProducto" class="form-control my-4 py-2" th:field="${producto.idProductos}" readonly>
+                    <label for="nombreProducto">Nombre de tu producto</label>
+                    <input type="text" name="nombreProductos" id="nombreProductos" class="form-control my-4 py-2" th:field="${producto.nombreProductos}" />
+                    <label for="cantidadProducto">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad" class="form-control my-4 py-2" th:field="${producto.cantidad}"/>
+                    <label for="precioProducto">Precio Compra</label>
+                    <input type="number" name="precioCompra" id="precioCompra" class="form-control my-4 py-2" th:field="${producto.precioCompra}"/>
+                    <label for="fecha">Fecha entrega</label>
+                    <input type="date" name="fechaEntrega" id="fechaEntrega" class="form-control my-4 py-2" th:field="${producto.fechaEntrega}"/>
+                    <label for="fecha">Estado</label>
+                    <input type="text" name="estado" id="estado" class="form-control my-4 py-2" th:field="${producto.estado}"/>
+                    
+                    <div class="text-center mt-3">
+                      <button type="submit" class="btn btn-primary">Subir Cambios</button>
+                      <a onclick="eliminarProducto()" class="btn btn-danger">Eliminar</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+
+      <!-- Registro proveedores -->
+      <div class="container mt-5 pt-5" style="display: none;" id="agregarProveedor">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form th:action="@{/save}" th:object="${proveedor}" th:method="POST">
+                  <h2 class="text-center mb-5">Registrar Proovedor</h2>
+                  <label for="ciudad">Nombre de tu ciudad</label>
+                  <input type="text" name="ciudad" th:field="*{ciudad}" id="ciudad" class="form-control my-4 py-2" placeholder="bogota" required/>
+
+                  <label for="nit">Nit</label>
+                  <input type="number" name="nit" th:field="*{nit}" id="nit" class="form-control my-4 py-2" placeholder="20" required />
+
+                  <label for="nombreProvedor">Nombre provedor</label>
+                  <input type="text" name="nombreProvedor" th:field="*{nombreProvedor}" id="nombreProvedor" class="form-control my-4 py-2" placeholder="..." required/>
+
+                  <div class="text-center mt-3">
+                    <button class="btn btn-primary">Registrar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Consulta proveedores -->
+      <div class="container mt-5 pt-5" style="display: none;" id="formularioConsultarProveedor">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="consultarProvedor" methot="POST">
+                  <h2 class="text-center mb-5">Consultar Proveedor</h2>
+                  <!--Registrar proveedor-->
+                  <label for="idProveedor">ID Proveedor</label>
+                  <input type="number" name="idProveedor" id="idProveedor" class="form-control my-4 py-2" placeholder="1050458879" required/>
+                  <div class="text-center mt-3">
+                    <input class="btn btn-primary justify-content-center align-content-center" type="submit" value="Buscar" />
+                  </div>
+                  <br>
+                  <br>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!----------------------------------------------------------------------------------- Compras --------------------------------------------------------->      
+      
+      <!-- Registrar Orden Compra -->
+      <div class="container mt-5 pt-5" style="display: none;" id="agregarRegistroCompra">
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="/registroOrdenCompra" th:object="${ordenCompra}" method="post">
+                  <h2 class="text-center mb-5">Orden de compra:</h2>
+                  <!-- llave fornaea del evento-->
+                  <label for="">Evento seleccionado:</label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" required> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.nombreCliente}" ></option>
+                  </select>
+                  <small class="form-text text-muted my-4 py-2">Selecciona el cliente al cual se le registro el evento</small>
+                  <!-- <label for="metodoPago">Metodo de Pago:</label>
+                  <select id="metodoPago" name="metodoPago" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Medio_Mano">Medio a la Mano</option>
+                    <option value="Efectivo">Efectivo</option>
+                  </select> -->
+                  <div class="text-center mt-3">
+                    <input class="btn btn-primary" type="submit" value="Registrar" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- consultar orden de compra -->
+      <div class="container mt-5 pt-5" style="display: none;" id="formularioConsultarOC"> 
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="">
+                  <h2 class="text-center mb-5">Consultar Orden de Compra</h2>
+                  <label for="idOv">ID Orden de compra:</label>
+                  <input type="number" name="idOc" id="idOc" class="form-control my-4 py-2" placeholder="9" required/>
+                  <div class="text-center mt-3">
+                    <a href="#" onclick="buscarIdOc()" class="btn btn-primary" id="buscarOrdenCompra">Buscar</a>
+                  </div>
+                  <div class="d-flex justify-content-around">
+                    <!-- <button class="btn btn-primary" id="modificarEvento" class="text-white">Modificar Evento</button>
+                    <button class="btn btn-primary" id="eliminarOV" class="text-white">Eliminar Evento</button> -->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario post consulta orden compra -->
+      <div class="container mt-5 pt-5" style="display: none;" id="formularioPostConsultarOC"> 
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="" th:object="${ordenCompra}">
+                  <!-- clase de vento que sera -->
+                  <input type="hidden" name="idOrdenCompra" class="form-control my-4 py-2" th:field="*{idOrdenCompra}" readonly/>
+                  <h2 class="text-center mb-5">Consultar Orden de Compra</h2>
+                  <br>
+		              
+                  <label for="detalleEvento">Unido al Evento: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" disabled> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.idDetalleEvento}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Reservado por: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" readonly> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.cedulaCliente}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Fecha del evento: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" readonly> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.fechaEvento}" selected></option>
+                  </select>
+                  
+                  <label for="detalleEvento">Cantidad de asistentes: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" readonly> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.aforoEvento}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Paquete seleccionado: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" readonly> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.paqueteEvento}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Tipo de evento: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" readonly> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.evento.nombreEvento}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Valor por pagar: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" readonly> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.valorEvento}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Responsable del evento: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" readonly> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.usuario.nombreUsuario}" selected></option>
+                  </select>
+
+                  <small class="form-text text-muted my-4 py-2">Tenga en cuenta que estos datos no se puede modificar</small>
+                  <br>                  
+                  <label for="estadoOrden">Estado actual: </label>
+                  <input type="text" name="estadoOrden" id="estadoOrden" class="form-control my-4 py-2" th:field="*{estadoOrden}" readonly/>
+        
+                  <div class="text-center mt-3">
+                    <a onclick="Pago()" class="btn btn-warning">Ir a pagar</a>
+                    <a onclick="deleteOrdenCompra()" class="btn btn-danger">Eliminar</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- registrar pago -->
+      <div class="container mt-5 pt-5" style="display: none;" id="formularioPago"> 
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="/registroPago" method="post">
+                  <h2 class="text-center mb-5">Registros</h2>
+
+                  <label for="metodoDePago">Metodo de Pago: </label>
+                  <select name="metodoDePago" class="form-control my-4 py-2" required>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Medio_Mano">Nequi</option>
+                    <option value="Medio_Mano">Daviplata</option>
+                  </select>
+                  
+                  <label for="metodoDePago">Valor del pago: </label>
+                  <input type="number" name="valor" class="form-control my-4 py-2"/>
+                  
+                  <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary" id="registraPago">Registrar</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Consultar Orden de venta -->
+      <div class="container mt-5 pt-5" style="display: none;" id="formularioConsultarOV"> 
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="">
+                  <h2 class="text-center mb-5">Consultar Orden de venta</h2>
+                  <label for="idOv">ID Orden de venta</label>
+                  <input type="text" name="idOv" id="idOv" class="form-control my-4 py-2" placeholder="1342" required/>
+                  <div class="text-center mt-3">
+                    <a href="#" onclick="buscarIdFormOV()" class="btn btn-primary justify-content-center align-content-center" id="formConsultaOv">Buscar</a>
+                  </div>
+                  <br>
+                  <br>
+                  <div class="d-flex justify-content-around">
+                    <!-- <button class="btn btn-primary" id="modificarEvento" class="text-white">Modificar Evento</button>
+                    <button class="btn btn-primary" id="eliminarOV" class="text-white">Eliminar Evento</button> -->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- post consulta de orden de venta -->
+      <div class="container mt-5 pt-5" style="display: none;" id="postConsultaOv"> 
+        <div class="row">
+          <div class="col-12 col-sm-7 col-md-6 m-auto">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <form action="" th:object="${ordenCompra}">
+                  <h2 class="text-center mb-5">Orden de venta</h2>
+                  <input type="hidden" name="idOrdenCompra" class="form-control my-4 py-2" th:field="*{idOrdenCompra}" readonly/>
+
+                  <label for="detalleEvento">Paquete seleccionado: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" disabled> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.paqueteEvento}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Tipo de evento: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" disabled> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.evento.nombreEvento}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Fecha del evento: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" disabled> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.fechaEvento}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Metodo de pago: </label>
+                  <select th:field="${ordenCompra.pago}" name="pago" class="form-control my-4 py-2" disabled> 
+                    <option th:each="pago : ${pagos}" th:value="${pago.idPagos}" th:text="${pago.metodoDePago}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Fecha de pago: </label>
+                  <select th:field="${ordenCompra.pago}" name="pago" class="form-control my-4 py-2" disabled> 
+                    <option th:each="pago : ${pagos}" th:value="${pago.idPagos}" th:text="${pago.fechaPago}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Valor pagado: </label>
+                  <select th:field="${ordenCompra.pago}" name="pago" class="form-control my-4 py-2" disabled> 
+                    <option th:each="pago : ${pagos}" th:value="${pago.idPagos}" th:text="${pago.valor}" selected></option>
+                  </select>
+
+                  <label for="detalleEvento">Responsable del evento: </label>
+                  <select th:field="${ordenCompra.detalleEvento}" name="detalleEvento" class="form-control my-4 py-2" disabled> 
+                    <option th:each="detalleEvento : ${detalleventos}" th:value="${detalleEvento.idDetalleEvento}" th:text="${detalleEvento.usuario.nombreUsuario}" selected></option>
+                  </select>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+    <!-- modulos -->
+    <!-- <script src="/resources/jsDashboard/app.js"></script>
+    <script src="/resources/jsDashboard/inventario.js"></script> -->
+    <!-- logistica agregar lista de productos en su campo predeteminado BD-->
+    <script>
+
+    </script>    
+    
+    <script src="../public/jsDashboard/app.js"></script>
+    <!-- <script src="../public/jsDashboard/logistica.js"></script>
+    <script src="../public/jsDashboard/inventario.js"></script>
+    <script src="../public/jsDashboard/ventas.js"></script> -->
+
+    
+
+    <!-- script chartJs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../public/js/demo/chart-area-demo.js"></script>
+    <script src="../public/js/demo/chart-pie-demo.js"></script>
+
+    <!-- <script th:inline="javascript">
+      var eventosMensuales = [[${eventosMensuales}]];
+    </script> -->
+
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      var eventosMensuales = /*[[${eventosMensuales}]]*/ [];
+      /*]]>*/
+    </script>
+
+    <!-- bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
+    <!-- fontAwesome -->
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  </body>
+</html>
